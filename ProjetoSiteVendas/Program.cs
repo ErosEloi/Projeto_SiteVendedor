@@ -8,8 +8,7 @@ namespace ProjetoSiteVendas
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddDbContext<ProjetoSiteVendasContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("ProjetoSiteVendasContext") ?? throw new InvalidOperationException("Connection string 'ProjetoSiteVendasContext' not found.")));
+            builder.Services.AddDbContext<ProjetoSiteVendasContext>(options => options.UseMySql("server=localhost; initial catalog=Crud_MVC_SiteVendas;uid=root;pwd=12345", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.33-mysql")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
