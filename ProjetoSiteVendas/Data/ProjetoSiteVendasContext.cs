@@ -15,5 +15,8 @@ namespace ProjetoSiteVendas.Data
         }
 
         public DbSet<ProjetoSiteVendas.Models.Department> Department { get; set; } = default!;
+        public DbSet<ProjetoSiteVendas.Models.Seller> Seller { get; set; } = default!;
+        public DbSet<ProjetoSiteVendas.Models.SalesRecord> SaleRecord { get; set; } = default!;
+        
     }
 }
