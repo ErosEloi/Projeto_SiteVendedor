@@ -15,20 +15,25 @@ namespace ProjetoSiteVendas.Models
         [Column("Id")]
         public int Id { get; set; }
 
+        [Required(ErrorMessage ="{0} required")]
         [Display(Name = "Name")]
         [Column("Name")]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
+        [EmailAddress(ErrorMessage ="Digite um E-mail valido")]
         [Display(Name = "E-mail")]
         [Column("email")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
         [Display(Name = "Data de Nascimento")]
         [Column("BirthDay")]
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
         [Display(Name = "Salário Base")]
         [Column("BaseSalary")]
         [DisplayFormat(DataFormatString ="{0:F2}")]
