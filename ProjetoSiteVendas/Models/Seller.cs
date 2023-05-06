@@ -33,7 +33,8 @@ namespace ProjetoSiteVendas.Models
 
         [Display(Name = "Department")]
         [Column("Department")]
-        public Department Department { get; set; }
+        public Department Department { get; set; } 
+        public int DepartmentId { get; set; }
 
         [Display(Name = "Sales")]
         [Column("Sales")]
