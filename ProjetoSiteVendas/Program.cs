@@ -1,10 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ProjetoSiteVendas.Data;
+using ProjetoSiteVendas.Interface;
+using ProjetoSiteVendas.Services;
+
 namespace ProjetoSiteVendas
 {
     public class Program
     {
+
+        
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +20,11 @@ namespace ProjetoSiteVendas
             
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            
+
+            // Serviço de busca dos vendedores
+            builder.Services.AddScoped<ISellerService, SellerService>();
 
             var app = builder.Build();
 
