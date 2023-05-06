@@ -12,6 +12,7 @@ namespace ProjetoSiteVendas.Interface
         void Insert(Seller obj);
         void Remove(int id);
         Seller FindById(int id);
+        void Update(Seller obj);
 
     }
 }
