@@ -10,6 +10,8 @@ namespace ProjetoSiteVendas.Interface
         
         List<Seller> FindAll();
         void Insert(Seller obj);
+        void Remove(int id);
+        Seller FindById(int id);
 
     }
 }
