@@ -25,6 +25,7 @@ namespace ProjetoSiteVendas
 
             // Serviço de busca dos vendedores
             builder.Services.AddScoped<ISellerService, SellerService>();
+            builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
             var app = builder.Build();
 

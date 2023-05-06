@@ -9,8 +9,7 @@ namespace ProjetoSiteVendas.Services
     {
 
         private readonly ProjetoSiteVendasContext _context;
-        //ISellerService service;
-
+       
         public SellerService(ProjetoSiteVendasContext context)
         {
             _context = context;
@@ -24,7 +23,7 @@ namespace ProjetoSiteVendas.Services
 
         public void Insert(Seller obj)
         {
-            obj.Department = _context.Department.First();
+            
             _context.Add(obj);
             _context.SaveChanges();
         }

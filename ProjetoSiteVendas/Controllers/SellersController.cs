@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjetoSiteVendas.Interface;
 using ProjetoSiteVendas.Models;
+using ProjetoSiteVendas.Models.ViewModels;
 using ProjetoSiteVendas.Services;
 
 namespace ProjetoSiteVendas.Controllers
@@ -9,9 +10,10 @@ namespace ProjetoSiteVendas.Controllers
     {
 
         private readonly ISellerService _sellerService;
-
-        public SellersController(ISellerService sellerService)
+        private readonly IDepartmentService _departmentService;
+        public SellersController(ISellerService sellerService, IDepartmentService departmentService)
         {
+            _departmentService = departmentService;
             _sellerService = sellerService;
         }
 
@@ -23,7 +25,9 @@ namespace ProjetoSiteVendas.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var departments = _departmentService.FindAll();
+            var viewModel = new SellerFormViewModel {Departments = departments };
+            return View(viewModel);
         }
 
         [HttpPost]
