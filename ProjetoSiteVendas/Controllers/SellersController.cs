@@ -26,11 +26,11 @@ namespace ProjetoSiteVendas.Controllers
             return View(list);
         }
 
-        
+        //Busca
         public IActionResult Create()
         {
             var departments = _departmentService.FindAll();
-            var viewModel = new SellerFormViewModel {Departments = departments };
+            var viewModel = new SellerFormViewModel { Departments = departments };
             return View(viewModel);
         }
 
@@ -39,25 +39,19 @@ namespace ProjetoSiteVendas.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Seller seller)
         {
-            if (!ModelState.IsValid)
-            {
-                var departments = _departmentService.FindAll();
-                var viewModel = new SellerFormViewModel { Seller = seller, Departments = departments };
-                return View(viewModel);
-            }
             _sellerService.Insert(seller);
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Delete(int? id)
         {
-           if(id == null)
+            if (id == null)
             {
-                return RedirectToAction(nameof(Error), new {message = "Id not Provided"});
+                return RedirectToAction(nameof(Error), new { message = "Id not Provided" });
             }
 
             var obj = _sellerService.FindById(id.Value);
-            if(obj == null)
+            if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not Found" });
             }
@@ -79,7 +73,7 @@ namespace ProjetoSiteVendas.Controllers
         {
             if (id == null)
             {
-                return  RedirectToAction(nameof(Error), new {message = "Id not Provided"});
+                return RedirectToAction(nameof(Error), new { message = "Id not Provided" });
             }
 
             var obj = _sellerService.FindById(id.Value);
@@ -93,13 +87,13 @@ namespace ProjetoSiteVendas.Controllers
 
         public IActionResult Edit(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not Provided" });
             }
 
             var obj = _sellerService.FindById(id.Value);
-            if(obj == null)
+            if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not Found" });
             }
@@ -111,15 +105,9 @@ namespace ProjetoSiteVendas.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken] 
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Seller seller)
         {
-            if (!ModelState.IsValid)
-            {
-                var departments =  _departmentService.FindAll();
-                var viewModel = new SellerFormViewModel { Seller = seller, Departments = departments };
-                return View(viewModel);
-            }
             if (id != seller.Id)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id mismatch" }); ;
@@ -129,7 +117,7 @@ namespace ProjetoSiteVendas.Controllers
                 _sellerService.Update(seller);
                 return RedirectToAction(nameof(Index));
             }
-            catch(ApplicationException e)
+            catch (ApplicationException e)
             {
                 return RedirectToAction(nameof(Error), new { message = e.Message });
             }
