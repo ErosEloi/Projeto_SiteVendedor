@@ -3,6 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using ProjetoSiteVendas.Data;
 using ProjetoSiteVendas.Interface;
 using ProjetoSiteVendas.Services;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace ProjetoSiteVendas
 {
@@ -30,6 +32,17 @@ namespace ProjetoSiteVendas
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
             var app = builder.Build();
+
+            var enUs = new CultureInfo("pt-BR");
+            var LocalizationOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(enUs), 
+                SupportedCultures = new List<CultureInfo> { enUs },
+                SupportedUICultures = new List<CultureInfo> { enUs }
+
+            };
+
+            app.UseRequestLocalization(LocalizationOptions);
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

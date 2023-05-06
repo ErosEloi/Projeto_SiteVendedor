@@ -19,24 +19,27 @@ namespace ProjetoSiteVendas.Models
         [Column("Name")]
         public string Name { get; set; }
 
-        [Display(Name = "email")]
+        [Display(Name = "E-mail")]
         [Column("email")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Display(Name = "BirthDate")]
+        [Display(Name = "Data de Nascimento")]
         [Column("BirthDay")]
+        [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
 
-        [Display(Name = "BaseSalary")]
+        [Display(Name = "Salário Base")]
         [Column("BaseSalary")]
+        [DisplayFormat(DataFormatString ="{0:F2}")]
         public double BaseSalary { get; set; }
 
-        [Display(Name = "Department")]
+        [Display(Name = "Departamento")]
         [Column("Department")]
         public Department Department { get; set; } 
         public int DepartmentId { get; set; }
 
-        [Display(Name = "Sales")]
+        [Display(Name = "Vendas")]
         [Column("Sales")]
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
 
