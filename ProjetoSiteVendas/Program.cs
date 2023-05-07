@@ -23,7 +23,7 @@ namespace ProjetoSiteVendas
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            
+            builder.Services.AddScoped<SeedingService>();
 
             // Serviço de busca dos vendedores
             builder.Services.AddScoped<ISellerService, SellerService>();
